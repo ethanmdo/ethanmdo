@@ -7,13 +7,10 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme(); // ✅ use resolvedTheme
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch (next-themes workaround)
   useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
 
   return (
     <header className="w-full border-b border-border bg-background sticky top-0 z-50">
@@ -32,18 +29,22 @@ export default function Navbar() {
 
         {/* Dark Mode Toggle */}
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
+          {mounted && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                setTheme(resolvedTheme === "dark" ? "light" : "dark")
+              }
+              aria-label="Toggle theme"
+            >
+              {resolvedTheme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
+          )}
         </div>
       </div>
     </header>
