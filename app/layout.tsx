@@ -28,10 +28,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative`}
+        suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <GlowBackground />
-        <Navbar />
+          <GlowBackground />
+          <Navbar />
         {children}
         </ThemeProvider>
       </body>
