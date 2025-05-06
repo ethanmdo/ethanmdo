@@ -21,8 +21,7 @@ export default function HomPage() {
       <Separator />
       {/* Scroll down to see About */}
       <Experience />
-      <Separator />
- 
+      
     </main>
   );
 }
