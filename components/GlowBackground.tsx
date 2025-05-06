@@ -5,9 +5,13 @@ import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import HALO from 'vanta/dist/vanta.halo.min';
 
+type VantaEffect = {
+  destroy: () => void;
+};
+
 export default function VantaHaloBackground() {
   const vantaRef = useRef<HTMLDivElement>(null);
-  const effectRef = useRef<any>(null);
+  const effectRef = useRef<VantaEffect | null>(null);
 
   useEffect(() => {
     if (vantaRef.current && !effectRef.current) {
