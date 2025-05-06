@@ -1,6 +1,6 @@
 "use client";
 
-import AnimatedText from "@/components/AnimatedText";
+import AnimatedText from "../components/AnimatedText";
 
 // import { Button } from "@/components/ui/button";
 
@@ -15,8 +15,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* 🧠 Content */}
       <AnimatedText text="ethanmdo.com" />
+
       <div className="mt-8 flex gap-4 flex-wrap justify-center"></div>
     </section>
   );

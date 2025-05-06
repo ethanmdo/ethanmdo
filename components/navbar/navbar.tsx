@@ -1,47 +1,83 @@
-"use client";
-
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+'use client';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
+import { Moon, Sun } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from 'react';
 
 export default function Navbar() {
-  const { resolvedTheme, setTheme } = useTheme(); // ✅ use resolvedTheme
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className="w-full border-b border-border bg-background sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo / Name */}
-        <Link href="/" className="text-xl font-semibold text-primary">
+    <header
+      className={cn(
+        'fixed inset-x-0 z-50 transition-[top] duration-500 ease-in-out',
+        scrolled ? 'top-4' : 'top-0'
+      )}
+    >
+      <div
+        style={{
+          willChange: 'transform, width, padding, background-color',
+          boxShadow: scrolled
+            ? 'rgba(34, 42, 53, 0.06) 0px 0px 24px, rgba(0, 0, 0, 0.05) 0px 1px 1px, ' +
+              'rgba(34, 42, 53, 0.04) 0px 0px 0px 1px, rgba(34, 42, 53, 0.08) 0px 0px 4px, ' +
+              'rgba(47, 48, 55, 0.05) 0px 16px 68px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset'
+            : 'none'
+        }}
+        className={cn(
+          'mx-auto flex items-center justify-between transition-[transform,width,padding,background-color] duration-500 ease-in-out',
+          scrolled
+            ? // Scrolled state: white/80 pill in light, Oklab pill in dark
+              'translate-y-5 w-[60%] py-[12px] px-[24px] ' +
+              'bg-white/80 text-gray-900 ' +
+              'dark:bg-[oklab(0.145_0_0_/_0.8)] dark:text-white ' +
+              'backdrop-blur-[10px] rounded-[2rem]'
+            : // Top state: fully transparent, text adapts to theme
+              'translate-y-0 w-[80%] py-4 px-[12px] ' +
+              'bg-transparent text-gray-900 dark:text-white ' +
+              'backdrop-blur-0 rounded-[2rem]'
+        )}
+      >
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-xl font-semibold text-gray-900 dark:text-white"
+        >
           ethanmdo
         </Link>
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
+        {/* Nav links */}
+        <nav className="hidden md:flex items-center gap-6 text-sm text-gray-900 dark:text-white">
           <Link href="/">Home</Link>
           <Link href="/projects">Projects</Link>
           <Link href="/contact">Contact</Link>
         </nav>
 
-        {/* Dark Mode Toggle */}
+        {/* Theme toggle */}
         <div className="flex items-center gap-2">
           {mounted && (
             <Button
               variant="ghost"
               size="icon"
-              onClick={() =>
-                setTheme(resolvedTheme === "dark" ? "light" : "dark")
-              }
               aria-label="Toggle theme"
+              onClick={() =>
+                setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+              }
             >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-5 w-5" />
+              {resolvedTheme === 'dark' ? (
+                <Sun className="h-5 w-5 text-white" />
               ) : (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-5 w-5 text-gray-900" />
               )}
             </Button>
           )}
