@@ -1,67 +1,51 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface AnimatedTextProps {
   text: string;
-  subtitle?: string;
   className?: string;
 }
 
 export default function AnimatedText({
   text,
-  subtitle = "Welcome to My Website",
   className = "",
 }: AnimatedTextProps) {
-  const [subtitleText, setSubtitleText] = useState("");
-  const [showCursor, setShowCursor] = useState(false);
-  const [typingDone, setTypingDone] = useState(false);
+  const [displayText, setDisplayText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
-    // start subtitle typing (and reveal cursor) after title fade-in completes
-    const startTypingTimer = setTimeout(() => {
-      setShowCursor(true);
-      let idx = 0;
-      const interval = setInterval(() => {
-        if (idx <= subtitle.length) {
-          setSubtitleText(subtitle.slice(0, idx));
-          idx++;
-        } else {
-          clearInterval(interval);
-          setTypingDone(true);
-        }
-      }, 100);
-    }, 1000); // title fade-in: 0.2s delay + 0.8s duration = 1s
+    const speed = 100;          // ms per character
+    let idx = 0;
 
-    return () => clearTimeout(startTypingTimer);
-  }, [subtitle]);
+    const interval = setInterval(() => {
+      idx++;
+      if (idx <= text.length) {
+        // always safe, never undefined
+        setDisplayText(text.substring(0, idx));
+      } else {
+        clearInterval(interval);
+        setShowCursor(false);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text]);
 
   return (
     <div className={cn("flex flex-col items-center", className)}>
-      {/* Fade‑in main title */}
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground"
-      >
-        {text}
-      </motion.h1>
-
-      {/* Typing subtitle + reserved cursor space */}
-      <p className="mt-4 text-xl sm:text-2xl text-foreground/80 font-medium">
-        {subtitleText}
-        <span
-          className={cn(
-            "inline-block w-1 h-7 ml-1",
-            !showCursor || typingDone
-              ? "invisible"
-              : "bg-foreground animate-pulse"
-          )}
-        />
-      </p>
+      <div className="bg-black/60 backdrop-blur-sm px-6 py-4 rounded-2xl text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)]">
+          {displayText}
+          <span
+            className={cn(
+              "inline-block w-1 h-7 ml-1",
+              showCursor ? "bg-white animate-pulse" : "invisible"
+            )}
+          />
+        </h1>
+      </div>
     </div>
   );
 }
