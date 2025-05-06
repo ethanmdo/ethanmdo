@@ -1,7 +1,6 @@
 "use client";
 
 import AboutSection from "@/components/about/about";
-import AnimatedText from "../components/AnimatedText";
 import Hero from "@/components/Hero";
 import Separator from "@/components/ui/separator";
 
