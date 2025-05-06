@@ -34,11 +34,10 @@ export default function GlowBackground() {
       gyroControls: false,
       minHeight: 200.0,
       minWidth: 200.0,
-      size: 
-        resolvedTheme === 'light' ?  0 : 1.2,
+      size: 1.2,
       amplitudeFactor: 1.2,
       backgroundColor:
-        resolvedTheme === 'light' ?  0xffffff : 0x000000,
+        resolvedTheme === 'light' ?  0xf5f5f5 : 0x000000,
       // baseColor:
       //   resolvedTheme === 'light' ? 0xedf2f7 : 0xed0000,
       xOffset: 0,

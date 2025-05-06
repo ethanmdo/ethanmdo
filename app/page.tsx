@@ -1,6 +1,7 @@
 "use client";
 
 import AboutSection from "@/components/about/about";
+import Experience from "@/components/experience/experience";
 import Hero from "@/components/Hero";
 import Separator from "@/components/ui/separator";
 
@@ -14,9 +15,14 @@ export default function HomPage() {
 
       <Separator />
       {/* Scroll down to see About */}
-      <section id="about" className="py-16 px-4 bg-black min-h-[60vh]">
+   
         <AboutSection />
-      </section>
+
+      <Separator />
+      {/* Scroll down to see About */}
+      <Experience />
+      <Separator />
+ 
     </main>
   );
 }

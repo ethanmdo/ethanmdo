@@ -1,61 +1,85 @@
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+// src/components/AboutSection.tsx
+'use client';
+
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const skills = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Tailwind CSS",
-  "Node.js",
-  "GraphQL",
+  'Java',
+  'Python',
+  'C',
+  'JavaScript',
+  'TypeScript',
+  'SQL',
 ];
 
 export default function AboutSection() {
   return (
     <motion.section
+      id="about"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="max-w-4xl mx-auto my-16 px-4"
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      className="w-full bg-gradient-to-br from-black via-slate-900 to-black py-20"
     >
-      <Card className="overflow-hidden">
-        <div className="md:flex items-center">
-          {/* Profile Image */}
-          <div className="md:w-1/3 flex justify-center p-6">
-            <Image
-              src="/profile.jpg"
-              alt="Profile"
-              width={200}
-              height={200}
-              className="rounded-full border-4 border-indigo-500"
-            />
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Solid panel with cyan border */}
+        <div className="bg-slate-800 rounded-2xl p-10 shadow-2xl border-2 border-cyan-500">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            
+            {/* Profile */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-center"
+            >
+              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-cyan-400">
+                <Image
+                  src="/profile.jpg"
+                  alt="Profile"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </motion.div>
+
+            {/* Text & Skills */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="space-y-6"
+            >
+              {/* Accent line */}
+              <div className="w-20 h-1 bg-cyan-400 rounded"></div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
+                About Me
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                Insert Text Here
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                {skills.map((skill, i) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <span className="inline-block px-4 py-1 bg-cyan-500 text-black rounded-full text-sm font-semibold hover:bg-cyan-400 transition">
+                      {skill}
+                    </span>
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           </div>
-
-          {/* Content */}
-          <CardContent className="md:w-2/3 p-6">
-            <h2 className="text-2xl font-bold mb-4">About Me</h2>
-            <p className="text-muted-foreground mb-6">
-              I’m a full-stack developer with a passion for building scalable web
-              applications and interactive user experiences. With experience in
-              React, Next.js, and Node.js, I love turning ideas into reality and
-              continually learning new technologies.
-            </p>
-
-            {/* Skill Badges */}
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </CardContent>
         </div>
-      </Card>
+      </div>
     </motion.section>
   );
 }
