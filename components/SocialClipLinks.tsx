@@ -5,12 +5,8 @@ import React from 'react';
 import {
   SiLinkedin,
   SiGithub,
-  SiTiktok,
-  SiX,
   SiInstagram,
   SiYoutube,
-  SiSpotify,
-  SiFacebook,
 } from 'react-icons/si';
 import { MdEmail } from 'react-icons/md';
 import { useAnimate } from 'framer-motion';
