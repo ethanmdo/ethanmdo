@@ -1,7 +1,7 @@
 // src/components/TimelineDemo.tsx
 'use client';
 
-import Image from 'next/image';
+
 import React from 'react';
 import { Timeline } from '@/components/ui/timeline';
 
@@ -30,12 +30,14 @@ export function TimelineDemo() {
                 width={500}
                 height={500}
                 className="h-70 w-full rounded-lg object-cover shadow-lg"
+                alt='Capital One GIF'
               />
                   <img
                 src={`/reach.png`}
                 width={500}
                 height={500}
                 className="h-70 w-full rounded-lg object-cover shadow-lg"
+                alt='Capital One GIF'
               />
     
           </div> 
@@ -64,12 +66,14 @@ export function TimelineDemo() {
                 width={500}
                 height={500}
                 className="h-70 w-full rounded-lg object-cover shadow-lg"
+                alt='Nightwatch GIF'
               />
                   <img
                 src={`/poster.png`}
                 width={500}
                 height={500}
                 className="h-70 w-full rounded-lg object-cover shadow-lg"
+                alt='Nightwatch GIF'
               />
           </div>
         </div>
@@ -130,12 +134,14 @@ export function TimelineDemo() {
                 width={500}
                 height={500}
                 className="h-70 w-full rounded-lg object-cover shadow-lg"
+                alt='Capital One GIF'
               />
                   <img
                 src={`/article.png`}
                 width={500}
                 height={500}
                 className="h-70 w-full rounded-lg object-cover shadow-lg"
+                alt='Capital One GIF'
               />
     
           </div>
