@@ -5,7 +5,7 @@ import { FaBriefcase, FaRobot, FaLaptopCode } from "react-icons/fa";
 
 export function Experience() {
   return (
-    <div className="w-full  flex flex-col justify-start items-center px-25 h-screen">
+    <div className="w-full flex flex-col justify-start items-center py-20 px-8 md:px-25 min-h-screen">
       <h2 className="text-3xl font-bold mb-8 text-center">Experience</h2>
       <HoverEffect items={experiences} />
     </div>
