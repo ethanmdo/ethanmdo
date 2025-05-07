@@ -19,7 +19,7 @@ import { useAnimate } from 'framer-motion';
  */
 export function SocialClipLinks() {
   return (
-    <div className="bg-gradient-to-br from-black via-slate-900 to-black py-60 divide-y divide-neutral-900 border border-neutral-900">
+    <div className="divide-y divide-neutral-900 border border-neutral-900">
       {/* Row 1 */}
       <div className="grid grid-cols-2 divide-x divide-white border border-white">
         <LinkBox Icon={SiLinkedin} href="https://linkedin.com/in/ethanmdo" />
