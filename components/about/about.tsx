@@ -20,7 +20,7 @@ export default function AboutSection() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="w-full bg-gradient-to-br from-black via-slate-900 to-black py-65"
+      className="w-full bg-gradient-to-tl from-black via-gray-900 to-black-900 py-65"
     >
       <div className="max-w-5xl mx-auto px-6">
         {/* Solid panel with cyan border */}

@@ -1,136 +1,187 @@
-// src/components/ExperienceCarousel.tsx
+// src/components/TimelineDemo.tsx
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
+import React from 'react';
+import { Timeline } from '@/components/ui/timeline';
 
-interface ExperienceItem {
-  id: number;
-  role: string;
-  company: string;
-  period: string;
-  description: string;
-}
 
-const experiences: ExperienceItem[] = [
-  {
-    id: 1,
-    role: 'Incoming Software Engineer Intern',
-    company: 'Capital One',
-    period: 'Jun 2025 – Aug 2025',
-    description: 'Small Business Card Team',
-  },
-  {
-    id: 2,
-    role: 'AI/ML Research Assistant',
-    company: 'Hume Center for National Security and Technology',
-    period: 'Sep 2024 – May 2025',
-    description: '3D Counter‑UAS Environment Simulations',
-  },
-  {
-    id: 3,
-    role: 'Software Engineer Consultant Intern',
-    company: 'CapTech Consulting',
-    period: 'May 2024 – Aug 2024',
-    description: 'Full‑Stack Client Project',
-  },
-  {
-    id: 4,
-    role: 'Undergraduate Research Assistant',
-    company: 'REACH Lab',
-    period: 'Feb 2024 – May 2024',
-    description:
-      'Co‑Author for Designing Technology to Support the Hospital Classroom: Preliminary Findings',
-  },
-  {
-    id: 5,
-    role: 'Intern',
-    company: 'Olympus Solutions Inc.',
-    period: 'Jun 2023 – Oct 2023',
-    description: 'Internal SharePoint Website',
-  },
-];
+export function TimelineDemo() {
+  const data = [
+    {
+      title: (
+        <div className="space-y-1 ">
+          <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+            Capital One
+          </h3>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            Jun 2025 – Aug 2025 &middot; Software Engineer Intern
+          </p>
+        </div>
+      ),
+      content: (
+        <div className="space-y-4">
+          <p className="text-sm text-neutral-800 dark:text-neutral-200">
+            Small Business Card Team
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+          <img
+                src={`/cap1.gif`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+                  <img
+                src={`/reach.png`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+    
+          </div> 
+        </div>
+      ),
+    },
+    {
+      title: (
+        <div className="space-y-1">
+          <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+            Hume Center for National Security &amp; Technology
+          </h3>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            Sep 2024 – May 2025 &middot; AI/ML Research Assistant
+          </p>
+        </div>
+      ),
+      content: (
+        <div className="space-y-4">
+          <p className="text-sm text-neutral-800 dark:text-neutral-200">
+          3D Counter-UAS Environment Simulations
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+          <img
+                src={`/nightwatch.png`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+                  <img
+                src={`/poster.png`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: (
+        <div className="space-y-1">
+          <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+            CapTech Consulting
+          </h3>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            May 2024 – Aug 2024 &middot; Software Engineer Consultant Intern
+          </p>
+        </div>
+      ),
+      content: (
+        <div className="space-y-4">
+          <p className="text-sm text-neutral-800 dark:text-neutral-200">
+          Full-Stack Client Project
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            {[1, 2].map((n) => (
+              <img
+                key={n}
+                src={`https://assets.aceternity.com/templates/startup-${n}.webp`}
+                alt={`screenshot ${n}`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+            ))}
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: (
+        <div className="space-y-1">
+          <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+            REACH Lab
+          </h3>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            Feb 2024 – May 2024 &middot; Undergraduate Research Assistant
+          </p>
+        </div>
+      ),
+      content: (
+        <div className="space-y-4">
+          <p className="text-sm text-neutral-800 dark:text-neutral-200">
+            Co‑authored <em>Designing Technology to Support the Hospital
+            Classroom: Preliminary Findings</em>.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+  
+              <img
+                src={`/reach.png`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+                  <img
+                src={`/article.png`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+    
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: (
+        <div className="space-y-1">
+          <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+            Olympus Solutions Inc.
+          </h3>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            Jun 2023 – Oct 2023 &middot; Intern
+          </p>
+        </div>
+      ),
+      content: (
+        <div className="space-y-4">
+          <p className="text-sm text-neutral-800 dark:text-neutral-200">
+          Internal SharePoint Website
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            {[1, 2].map((n) => (
+              <img
+                key={n}
+                src={`https://assets.aceternity.com/templates/startup-${n}.webp`}
+                alt={`screenshot ${n}`}
+                width={500}
+                height={500}
+                className="h-70 w-full rounded-lg object-cover shadow-lg"
+              />
+            ))}
+          </div>
+        </div>
+      ),
+    },
+  ];
 
-export default function ExperienceCarousel() {
   return (
-    <div className="">
- 
-      <HorizontalScrollCarousel />
- 
-   
-      </div>
-
+    <div className="relative w-full overflow-hidden ">
+      <Timeline data={data.map(({ title, content }) => ({ title, content }))} />
+    </div>
   );
 }
 
-function HorizontalScrollCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-
-  // Tie scroll progress to this section, from top‐in‐view to bottom‐out‐of‐view
-  const { scrollYProgress } = useScroll({
-    target: trackRef,
-    offset: ['start start', 'end end'],
-  });
-
-  // Measure the total horizontal scroll distance
-  const [maxX, setMaxX] = useState(0);
-  useEffect(() => {
-    function measure() {
-      if (innerRef.current) {
-        setMaxX(innerRef.current.scrollWidth - window.innerWidth);
-      }
-    }
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-
-  // Only reference window.innerHeight inside an effect
-  const [sectionHeight, setSectionHeight] = useState('0px');
-  useEffect(() => {
-    if (maxX > 0) {
-      setSectionHeight(`${maxX + window.innerHeight}px`);
-    }
-  }, [maxX]);
-
-  // Map vertical scroll progress [0→1] to horizontal translate [0→-maxX]
-  const x = useTransform(scrollYProgress, [0, 1], [0, -maxX]);
-
-  return (
-    <section
-      ref={trackRef}
-      className="relative"
-      style={{ height: sectionHeight }}
-    >
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
-        <motion.div
-          ref={innerRef}
-          style={{ x }}
-          className="flex gap-4 px-6 items-center h-full"
-        >
-          {experiences.map((exp) => (
-            <div
-              key={exp.id}
-              className="flex-none w-[400px] h-[300px] flex justify-center"
-            >
-              <div className="bg-slate-800 border-2 border-cyan-500 rounded-2xl shadow-lg p-6 h-full">
-                <h3 className="text-2xl font-semibold text-white">
-                  {exp.role}
-                </h3>
-                <div className="mt-2 flex items-center text-cyan-300 text-sm gap-2">
-                  <span>{exp.company}</span>
-                  <span>•</span>
-                  <span>{exp.period}</span>
-                </div>
-                <p className="mt-4 text-gray-300 text-sm">
-                  {exp.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
+export default function Experience() {
+  return <TimelineDemo />;
 }

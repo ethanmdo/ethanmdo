@@ -21,17 +21,17 @@ export function SocialClipLinks() {
   return (
     <div className="bg-gradient-to-br from-black via-slate-900 to-black py-60 divide-y divide-neutral-900 border border-neutral-900">
       {/* Row 1 */}
-      <div className="grid grid-cols-2 divide-x divide-neutral-900 border border-white">
-        <LinkBox Icon={SiLinkedin} href="https://linkedin.com/in/your‑profile" />
-        <LinkBox Icon={SiGithub} href="https://github.com/your‑username" />
+      <div className="grid grid-cols-2 divide-x divide-white border border-white">
+        <LinkBox Icon={SiLinkedin} href="https://linkedin.com/in/ethanmdo" />
+        <LinkBox Icon={SiGithub} href="https://github.com/your‑ethanmdo" />
       </div>
 
 
       {/* Row 3 */}
-      <div className="grid grid-cols-3 divide-x divide-neutral-900 border border-white">
-      <LinkBox Icon={SiInstagram} href="https://instagram.com/your‑handle" />
-        <LinkBox Icon={SiYoutube} href="https://youtube.com/your‑channel" />
-        <LinkBox Icon={MdEmail} href="mailto:you@yourdomain.com" />
+      <div className="grid grid-cols-3 divide-x divide-white border border-white">
+      <LinkBox Icon={SiInstagram} href="https://instagram.com/ethanmdo" />
+        <LinkBox Icon={SiYoutube} href="https://youtube.com/ethanmdo" />
+        <LinkBox Icon={MdEmail} href="mailto:ethando@gmail.com" />
       </div>
     </div>
   );
@@ -102,7 +102,7 @@ function LinkBox({ Icon, href }: LinkBoxProps) {
       <div
         ref={scope}
         style={{ clipPath: BOTTOM_RIGHT_CLIP }}
-        className="absolute inset-0 grid place-content-center bg-neutral-900 text-white"
+        className="absolute inset-0 grid place-content-center bg-white text-black"
       >
         <Icon className="text-2xl sm:text-3xl md:text-4xl" />
       </div>
