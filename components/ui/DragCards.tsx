@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 export const DragCards = () => {
   return (
-    <section className="relative grid h-full w-full place-content-center overflow-hidden">
+    <section className="relative grid h-full w-full place-content-center overflow-hidden transform">
       {/* <h2 className="relative z-0 text-[20vw] font-black text-neutral-800 md:text-[200px]">
         ETHAN<span className="text-cyan-500">.</span>
       </h2> */}
@@ -34,7 +34,7 @@ const Cards = () => {
         rotate="12deg"
         top="45%"
         left="60%"
-        className="w-24 md:w-48"
+        className="w-36 md:w-56"
       />
       <Card
         containerRef={containerRef}
