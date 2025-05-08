@@ -3,7 +3,7 @@
 import AboutSection from "@/components/about/about";
 import Experience from "@/components/experience/experience";
 import Hero from "@/components/Hero";
-import { SocialClipLinks } from "@/components/SocialClipLinks";
+
 import Separator from "@/components/ui/separator";
 
 
@@ -30,7 +30,6 @@ export default function HomPage() {
 
       
 
-      <SocialClipLinks />
       
     </main>
   );
