@@ -1,17 +1,13 @@
 'use client';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes';
-import { Moon, Sun } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react';
+import NavButton from '../ui/nav-button';
 
 export default function Navbar() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
@@ -39,48 +35,32 @@ export default function Navbar() {
           scrolled
             ? // Scrolled state: white/80 pill in light, Oklab pill in dark
               'translate-y-5 w-[60%] py-[12px] px-[24px] ' +
-              'bg-white/80 text-gray-900 ' +
-              'dark:bg-[oklab(0.145_0_0_/_0.8)] dark:text-white ' +
+              'bg-[oklab(0.145_0_0_/_0.8)] text-white ' +
               'backdrop-blur-[10px] rounded-[2rem]'
             : // Top state: fully transparent, text adapts to theme
               'translate-y-0 w-[80%] py-4 px-[12px] ' +
-              'bg-transparent text-gray-900 dark:text-white ' +
+              'bg-transparent text-white ' +
               'backdrop-blur-0 rounded-[2rem]'
         )}
       >
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-semibold text-gray-900 dark:text-white"
+          className="text-xl font-semibold text-white font-mono"
         >
           ethanmdo
         </Link>
 
         {/* Nav links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm text-gray-900 dark:text-white">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-mono text-white">
           <Link href="/">Home</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/projects">About</Link>
+          <Link href="/contact">Experience</Link>
         </nav>
 
         {/* Theme toggle */}
         <div className="flex items-center gap-2">
-          {mounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Toggle theme"
-              onClick={() =>
-                setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-              }
-            >
-              {resolvedTheme === 'dark' ? (
-                <Sun className="h-5 w-5 text-white" />
-              ) : (
-                <Moon className="h-5 w-5 text-gray-900" />
-              )}
-            </Button>
-          )}
+          <NavButton />
         </div>
       </div>
     </header>

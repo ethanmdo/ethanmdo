@@ -4,13 +4,14 @@
 import React from "react";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { DragCards } from "../ui/DragCards";
+import Example from "../ui/encrypt";
 
 export default function About() {
   return (
     <section className="flex flex-col md:flex-row h-screen">
       {/* Left: LinkPreview text */}
       <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 space-y-8 ">
-        <span className="text-neutral-500 dark:text-neutral-400 text-xl md:text-3xl max-w-3xl ">
+        <span className="text-neutral-400 text-xl md:text-3xl max-w-3xl ">
           My name is{" "}
           <LinkPreview url="https://ethanmdo.com" className="font-bold">
             Ethan Do
@@ -21,6 +22,7 @@ export default function About() {
           </LinkPreview>
           .
         </span>
+        <Example />
       </div>
 
       {/* Right: draggable cards */}

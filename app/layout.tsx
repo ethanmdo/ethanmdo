@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GlowBackground from "../components/GlowBackground";
-import { ThemeProvider } from "../components/theme-provider";
+
 import Navbar from "@/components/navbar/navbar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,11 +30,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative`}
         suppressHydrationWarning
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      
           <GlowBackground />
           <Navbar />
         {children}
-        </ThemeProvider>
+
       </body>
     </html>
   );

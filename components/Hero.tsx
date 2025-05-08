@@ -28,12 +28,6 @@ export default function Hero() {
       id="hero"
       className="relative w-full h-screen flex items-center justify-center text-center px-4 overflow-hidden"
     >
-      {/* Glowy Background (dark only) */}
-      <div className="absolute inset-0 -z-10">
-        <div className="hidden dark:block blur-3xl opacity-40 pointer-events-none">
-          {/* … */}
-        </div>
-      </div>
 
       <AnimatePresence>
         {!scrolled && (
