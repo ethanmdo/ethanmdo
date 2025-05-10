@@ -18,12 +18,12 @@ export default function HomPage() {
       <Hero />
 
       <Separator />
-      {/* Scroll down to see About */}
+ 
    
         <AboutSection />
 
       <Separator />
-      {/* Scroll down to see About */}
+
       <Experience />
 
       <Separator />
