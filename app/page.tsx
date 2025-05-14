@@ -12,9 +12,7 @@ import Separator from "@/components/ui/separator";
 export default function HomPage() {
   return (
     <main
-      className="relative bg-gradient-to-b from-transparent via-slate-900 via-[40%] to-neutral-950 to-[90%]
-
-"
+      className="relative bg-gradient-to-b from-transparent via-slate-900 via-[40%] to-neutral-950 to-[120%]"
     >
       <section id="home">
         <Hero />

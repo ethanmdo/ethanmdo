@@ -1,15 +1,7 @@
-import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
 import { useRef, useState } from "react";
-
-export interface ExperienceItem {
-  company: string;
-  title: string;
-  description: string;
-  link: string;
-  icon?: React.ReactNode;
-  date: string;
-}
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { ExperienceItem } from "../lib/experience-items";
 
 export const HoverEffect = ({
   items,

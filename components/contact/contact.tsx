@@ -69,95 +69,118 @@ export default function Contact() {
   return (
     <section className="py-20 px-4 md:px-8">
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
         viewport={{ once: true }}
         className="max-w-2xl mx-auto"
       >
-        <div className="flex justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="flex justify-center"
+        >
           <button
             onClick={scrollToForm}
-            className="text-3xl font-medium text-center mb-16 text-white"
+            className="text-4xl font-bold text-center mb-12 bg-clip-text text-white"
           >
             Get in Touch
           </button>
-        </div>
+        </motion.div>
 
-        <Card
-          id="contact-form"
-          className="p-6 md:p-8 bg-slate-900/30 border border-slate-800/50 backdrop-blur-sm"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
         >
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="space-y-6">
-              <div>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-transparent border-b border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Name"
-                />
+          <Card
+            id="contact-form"
+            className="p-6 md:p-8 bg-slate-900/30 border border-slate-800/50 backdrop-blur-sm"
+          >
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-6">
+                <div>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-transparent border-b border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                    placeholder="Name"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-transparent border-b border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                    placeholder="Email"
+                  />
+                </div>
+
+                <div>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 bg-transparent border-b border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                    placeholder="Message"
+                  />
+                </div>
               </div>
 
-              <div>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-transparent border-b border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Email"
-                />
-              </div>
-
-              <div>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="w-full px-4 py-3 bg-transparent border-b border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
-                  placeholder="Message"
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="w-full py-3 px-6 rounded-lg bg-blue-500/10 text-blue-400 font-medium hover:bg-blue-500/20 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {status === "loading" ? "Sending..." : "Send Message"}
-            </button>
-
-            {status === "success" && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-blue-400 text-center text-sm"
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                disabled={status === "loading"}
+                className="relative w-full p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
-                Message sent successfully
-              </motion.p>
-            )}
-            {status === "error" && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-red-400 text-center text-sm"
-              >
-                {errorMessage}
-              </motion.p>
-            )}
-          </form>
-        </Card>
+                <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <span className="relative z-10 block w-full px-6 py-3 rounded-xl bg-gray-950">
+                  <div className="relative z-10 flex items-center justify-center">
+                    <span className="transition-all duration-500 font-mono">
+                      {status === "loading" ? "Sending..." : "Send Message"}
+                    </span>
+                  </div>
+                </span>
+              </motion.button>
+
+              {status === "success" && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-green-500 text-center"
+                >
+                  Message sent successfully!
+                </motion.p>
+              )}
+
+              {status === "error" && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-500 text-center"
+                >
+                  {errorMessage}
+                </motion.p>
+              )}
+            </form>
+          </Card>
+        </motion.div>
       </motion.div>
     </section>
   );
